@@ -2,14 +2,7 @@ import streamlit as st
 from groq import Groq
 import os
 
-# ---------- API Key: Cloud pehle, phir local ----------
-try:
-    api_key = st.secrets["GROQ_API_KEY"]      # Cloud (Streamlit Secrets)
-except:
-    from dotenv import load_dotenv
-    load_dotenv()
-    api_key = os.getenv("GROQ_API_KEY")       # Local (.env file)
-
+api_key = st.secrets["GROQ_API_KEY"]
 client = Groq(api_key=api_key)
 
 # st are functions
