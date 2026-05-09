@@ -1,13 +1,16 @@
-import streamlit as st  #library
-from groq import Groq   #library
-#env setting 
-from dotenv import load_dotenv#import library to secure ans store secret infromation
-import os  #used  operating systems functions like file reading
-load_dotenv()#.env file ku parhu or us mee likhi sari cheze laod kru 
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))  #os.getenv file se key le kr ao grok key
-#grok(api_key) client ku bnao ta ky tum us ku identify kr sku
+import streamlit as st
+from groq import Groq
+import os
 
+# ---------- API Key: Cloud pehle, phir local ----------
+try:
+    api_key = st.secrets["GROQ_API_KEY"]      # Cloud (Streamlit Secrets)
+except:
+    from dotenv import load_dotenv
+    load_dotenv()
+    api_key = os.getenv("GROQ_API_KEY")       # Local (.env file)
 
+client = Groq(api_key=api_key)
 
 # st are functions
 
